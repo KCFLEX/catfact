@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+      
+
+  golang-app:
+    container_name: golang-app
+    image: catfact/golang-app:1.0.2
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URL: "mongodb://localhost:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:
