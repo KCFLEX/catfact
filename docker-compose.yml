@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:7.0-rc-jammy
     container_name: mongodb
     ports:
       - "27017:27017"
@@ -11,14 +11,14 @@ services:
 
   golang-app:
     container_name: golang-app
-    image: catfact/golang-app:1.0.2
+    image: catfact/golang-app:1.0.4
     build: .
     depends_on:
       - mongodb
     ports:
       - "3000:3000"
     environment:
-      MONGO_URL: "mongodb://localhost:27017"
+      MONGO_URI: mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.2
     networks:
       - app-network
 

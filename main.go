@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -85,8 +86,8 @@ func (cfw *CatfactWorker) start() error {
 }
 func main() {
 	// this code establishes a connection to a MongoDB database running on localhost at port 27017 using the Go MongoDB driver. If an error occurs during the connection attempt, it will panic and print the error message. Otherwise, it will store the MongoDB client in the client variable for further use.
-	MONGO_URL := "mongodb://localhost:27017"
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(MONGO_URL))
+	URI := os.Getenv("MONGO_URI")
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(URI))
 	if err != nil {
 		panic(err)
 	}
