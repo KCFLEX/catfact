@@ -65,7 +65,7 @@ func NewCatFactWorker(c *mongo.Client) *CatfactWorker { // constructor function:
 // func (cfw *CatfactWorker) start() error is a method intended to start the worker to periodically fetch and insert cat facts into the MongoDB databaseusing a provided MongoDB client.
 func (cfw *CatfactWorker) start() error {
 	coll := cfw.client.Database("catfact").Collection("facts") //This line initializes a coll variable by accessing the "facts" collection in the "catfact" database using the client stored in the CatfactWorker. It prepares to interact with this collection
-	ticker := time.NewTicker(2 * time.Minute)                  //This line creates a ticker using the time.NewTicker function, which will tick every 2 minutes. This ticker will be used to control the periodic fetching and insertion of cat facts.
+	ticker := time.NewTicker(5 * time.Second)                  //This line creates a ticker using the time.NewTicker function, which will tick every 2 minutes. This ticker will be used to control the periodic fetching and insertion of cat facts.
 
 	for {
 		resp, err := http.Get("https://catfact.ninja/fact")

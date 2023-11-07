@@ -11,14 +11,14 @@ services:
 
   golang-app:
     container_name: golang-app
-    image: catfact/golang-app:1.0.4
+    image: catfact/golang-app:1.0.6
     build: .
     depends_on:
       - mongodb
     ports:
       - "3000:3000"
     environment:
-      MONGO_URI: mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.2
+      MONGO_URI: mongodb://mongodb:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.2
     networks:
       - app-network
 
