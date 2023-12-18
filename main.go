@@ -81,7 +81,7 @@ func (cfw *CatfactWorker) start() error {
 		if err != nil {
 			return err
 		}
-		<-ticker.C // This code blocks until the ticker ticks (every 2 minutes). After that, the loop continues, fetching another cat fact and inserting it into the database.
+		<-ticker.C // This code blocks until the ticker ticks (every 5 seconds). After that, the loop continues, fetching another cat fact and inserting it into the database.
 	}
 }
 func main() {
